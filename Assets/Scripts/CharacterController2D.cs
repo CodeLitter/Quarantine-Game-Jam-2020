@@ -22,14 +22,14 @@ public class CharacterController2D : MonoBehaviour
 
     public Vector2 Position
     {
-        get
-        {
-            return rigidbody2D.position;
-        }
-        set
-        {
-            rigidbody2D.position = value;
-        }
+        get => rigidbody2D.position;
+        set => rigidbody2D.position = value;
+    }
+
+    public Vector2 Velocity
+    {
+        get => rigidbody2D.velocity;
+        set => rigidbody2D.velocity = value;
     }
 
     public void Move(Vector2 motion)
