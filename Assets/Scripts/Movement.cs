@@ -5,9 +5,10 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    public float speed = 1.0f;
-    public CharacterController2D characterController2D;
-    private Vector2 _direction;
+    public float speed = 100.0f;
+    public Camera camera;
+    public CharacterController characterController;
+    private Vector3 _direction;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -16,16 +17,24 @@ public class Movement : MonoBehaviour
 
     private void Awake()
     {
-        characterController2D = GetComponentInParent<CharacterController2D>();
+        characterController = GetComponentInParent<CharacterController>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        Vector2 motion = new Vector2
+        Vector3 motion = _direction;
+        if (camera != null)
         {
-            x = _direction.x * speed,
-            y = _direction.y * speed
-        };
-        characterController2D.Move(motion);
+            Vector3 forward = Vector3.ProjectOnPlane(camera.transform.forward, Vector3.up);
+            motion = Quaternion.LookRotation(Vector3.down, forward) * _direction;
+        }
+
+        characterController.Move(motion * speed * Time.deltaTime);
+    }
+
+    private void LateUpdate()
+    {
+        Vector3 forward = Vector3.ProjectOnPlane(camera.transform.forward, Vector3.up);
+        characterController.transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
     }
 }

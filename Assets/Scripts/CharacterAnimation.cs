@@ -5,22 +5,25 @@ using UnityEngine;
 public class CharacterAnimation : MonoBehaviour
 {
     public Animator animator;
-    public CharacterController2D characterController2D;
-    private readonly int _speedID = Animator.StringToHash("Speed");
+    public CharacterController characterController;
+    public SpriteRenderer spriteRenderer;
+    private readonly int _hSpeedID = Animator.StringToHash("Horizontal");
+    private readonly int _vSpeedID = Animator.StringToHash("Vertical");
     private readonly int _idleID = Animator.StringToHash("Idle");
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        characterController2D = GetComponentInParent<CharacterController2D>();
+        characterController = GetComponentInParent<CharacterController>();
+        spriteRenderer = GetComponentInParent<SpriteRenderer>();
     }
 
     private void Update()
     {
-        float sign = Mathf.Sign(characterController2D.Velocity.x);
-        float speed = sign * characterController2D.Velocity.magnitude;
+        Vector3 velocity = Quaternion.Inverse(characterController.transform.rotation) * characterController.velocity;
 
-        animator.SetBool(_idleID, speed == 0);
-        animator.SetFloat(_speedID, speed);
+        animator.SetBool(_idleID, velocity.magnitude == 0);
+        animator.SetFloat(_hSpeedID, velocity.x);
+        animator.SetFloat(_vSpeedID, velocity.z);
     }
 }
