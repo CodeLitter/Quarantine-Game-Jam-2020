@@ -6,6 +6,11 @@ public class Billboard : MonoBehaviour
 {
     public Camera camera;
 
+    private void Awake()
+    {
+        camera = Camera.main;
+    }
+
     private void LateUpdate()
     {
         Vector3 forward = Vector3.ProjectOnPlane(camera.transform.forward, -Vector3.up);
