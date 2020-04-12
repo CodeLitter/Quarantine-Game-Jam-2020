@@ -52,10 +52,9 @@ public class Alpaca : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && _time >= 0.0f)
+        if (other.CompareTag("Player") && _time > 0.0f)
         {
             _direction = Vector3.ProjectOnPlane(transform.position - other.transform.position, Vector3.up).normalized;
-            _time = 0.0f;
         }
     }
 

@@ -21,10 +21,7 @@ public class Sing : MonoBehaviour, ICharacterBehaviour
             foreach (var collider in _colliders)
             {
                 Alpaca alpaca = collider?.GetComponent<Alpaca>();
-                if (alpaca != null)
-                {
-                    alpaca.Charm(transform, duration);
-                }
+                alpaca?.Charm(transform, duration);
             }
         }
         _time = 0.0f;
