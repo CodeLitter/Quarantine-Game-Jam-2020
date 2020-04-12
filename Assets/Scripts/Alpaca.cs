@@ -46,7 +46,7 @@ public class Alpaca : MonoBehaviour
             var spriteName = spriteRenderer.sprite.name;
             var pattern = spriteName.Substring(spriteName.IndexOf('_'));
 
-            spriteRenderer.sprite = sprites.Find(sprite => sprite.name.EndsWith(pattern));
+            spriteRenderer.sprite = sprites.Find(sprite => sprite.name.EndsWith(pattern)) ?? spriteRenderer.sprite;
         }
     }
 
