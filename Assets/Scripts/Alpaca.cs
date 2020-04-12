@@ -13,6 +13,12 @@ public class Alpaca : MonoBehaviour
     private Vector3 _direction;
     private float _time;
 
+    public void Charm(Transform charmer, float duration)
+    {
+        _direction = Vector3.ProjectOnPlane(charmer.position - transform.position, Vector3.up).normalized;
+        _time = -duration;
+    }
+
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -25,10 +31,12 @@ public class Alpaca : MonoBehaviour
         if (_time > attentionSpan)
         {
             _direction = RandomDirection(Vector3.up);
-            Debug.Log(_direction);
             _time = 0.0f;
         }
-        BroadcastMessage(nameof(ICharacterBehaviour<Vector3>.OnBehaviour), _direction, SendMessageOptions.DontRequireReceiver);
+        foreach (var behaviour in GetComponentsInChildren<ICharacterBehaviour<Vector3>>())
+        {
+            behaviour.OnBehaviour(_direction);
+        }
     }
 
     private void LateUpdate()
@@ -44,7 +52,7 @@ public class Alpaca : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && _time >= 0.0f)
         {
             _direction = Vector3.ProjectOnPlane(transform.position - other.transform.position, Vector3.up).normalized;
             _time = 0.0f;

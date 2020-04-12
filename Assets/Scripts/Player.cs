@@ -5,28 +5,39 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    private List<ICharacterBehaviour<Vector3>> _vector3Behaviours = new List<ICharacterBehaviour<Vector3>>();
-    private List<ICharacterBehaviour<Vector2>> _vector2Behaviours = new List<ICharacterBehaviour<Vector2>>();
-
     public void OnMove(InputAction.CallbackContext context)
     {
-        foreach (var behaviour in _vector3Behaviours)
+        foreach (var behaviour in GetComponentsInChildren<ICharacterBehaviour<Vector3>>())
         {
-            behaviour.OnBehaviour(context.ReadValue<Vector2>());
+            if ((behaviour as MonoBehaviour).enabled)
+            {
+                behaviour.OnBehaviour(context.ReadValue<Vector2>());
+            }
         }
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        foreach (var behaviour in _vector2Behaviours)
+        foreach (var behaviour in GetComponentsInChildren<ICharacterBehaviour<Vector2>>())
         {
-            behaviour.OnBehaviour(context.ReadValue<Vector2>());
+            if ((behaviour as MonoBehaviour).enabled)
+            {
+                behaviour.OnBehaviour(context.ReadValue<Vector2>());
+            }
         }
     }
 
-    private void Awake()
+    public void OnFire(InputAction.CallbackContext context)
     {
-        _vector3Behaviours.AddRange(GetComponentsInChildren<ICharacterBehaviour<Vector3>>());
-        _vector2Behaviours.AddRange(GetComponentsInChildren<ICharacterBehaviour<Vector2>>());
+        if (context.ReadValueAsButton())
+        {
+            foreach (var behaviour in GetComponentsInChildren<ICharacterBehaviour>())
+            {
+                if ((behaviour as MonoBehaviour).enabled)
+                {
+                    behaviour.OnBehaviour();
+                }
+            }
+        }
     }
 }

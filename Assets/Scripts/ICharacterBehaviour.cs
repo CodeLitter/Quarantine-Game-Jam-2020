@@ -2,7 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ICharacterBehaviour<Type>
+public interface ICharacterBehaviourBase
+{
+}
+
+public interface ICharacterBehaviour<Type> : ICharacterBehaviourBase
 {
     void OnBehaviour(Type value);
+}
+
+public interface ICharacterBehaviour
+{
+    void OnBehaviour();
 }
