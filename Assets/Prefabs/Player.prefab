@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab509736ab973774ca05facdb40b228b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
   camera: {fileID: 0}
   characterController: {fileID: 0}
 --- !u!114 &1857072615928417789
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 5
-  range: 5
+  range: 6
   charmMax: 10
 --- !u!1 &5858472192052144873
 GameObject:
