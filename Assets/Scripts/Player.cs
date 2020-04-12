@@ -40,4 +40,17 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Update()
+    {
+        if (Mouse.current.leftButton.isPressed)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
 }
