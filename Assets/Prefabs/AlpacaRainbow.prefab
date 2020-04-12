@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2701938752184521344}
   - component: {fileID: 2701938752184521347}
   m_Layer: 0
-  m_Name: AlpacaWhite
+  m_Name: AlpacaRainbow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attentionSpan: 1
   stopChance: 0.5
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: eba6bf9c45bb3a042b6d5ab22757e5f3, type: 3}
+  - {fileID: 21300000, guid: 36278ec5d3b8e8547b934c264824b603, type: 3}
+  - {fileID: 21300000, guid: 79e1c97a9bd1e53479a71d97d9e2ce8b, type: 3}
+  - {fileID: 21300000, guid: 3d118f1586d45254890aff8cb84ec73f, type: 3}
+  - {fileID: 21300000, guid: 21979e82d53647e47afaea999c86ad56, type: 3}
+  - {fileID: 21300000, guid: 847c31181c4a36e4694e3e5751fbcda9, type: 3}
+  - {fileID: 21300000, guid: a9fb75dfc8690d34a82d89ff4c79c174, type: 3}
+  - {fileID: 21300000, guid: 2a9b210433fe2ba4ab55b7a0cfa41608, type: 3}
+  - {fileID: 21300000, guid: 7f305ee2d27181842bb72ee963575b56, type: 3}
+  - {fileID: 21300000, guid: 165b2554cb48fc74da9e5559385cc887, type: 3}
   characterController: {fileID: 0}
   spriteRenderer: {fileID: 0}
 --- !u!114 &2701938752184521347
@@ -233,7 +243,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: a47382250f76d8f4fb972a7886f659e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eba6bf9c45bb3a042b6d5ab22757e5f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
