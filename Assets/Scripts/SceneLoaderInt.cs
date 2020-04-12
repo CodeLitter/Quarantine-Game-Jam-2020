@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class SceneLoaderInt : MonoBehaviour
 {
@@ -19,6 +19,6 @@ public class SceneLoaderInt : MonoBehaviour
 
     public void changeScenery(int sceneToLoad)
     {
-        EditorSceneManager.LoadScene(sceneToLoad);
+        SceneManager.LoadScene(sceneToLoad);
     }
 }
