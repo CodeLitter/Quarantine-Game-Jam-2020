@@ -1,21 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class Look : MonoBehaviour
+public class Look : MonoBehaviour, ICharacterBehaviour<Vector2>
 {
-    public float speed = 1.0f;
+    public float speed = 100.0f;
+    public Transform target;
     private Vector2 _direction;
 
-    public void OnLook(InputAction.CallbackContext context)
+    public void OnBehaviour(Vector2 value)
     {
-        _direction = context.ReadValue<Vector2>();
+        _direction = value;
     }
 
     private void LateUpdate()
     {
-        Quaternion rotation = Quaternion.AngleAxis(_direction.x, Vector3.up) * transform.rotation;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, speed * Time.deltaTime);
+        Quaternion rotation = Quaternion.AngleAxis(_direction.x, Vector3.up) * target.rotation;
+        target.rotation = Quaternion.RotateTowards(target.rotation, rotation, speed * Time.deltaTime);
     }
 }

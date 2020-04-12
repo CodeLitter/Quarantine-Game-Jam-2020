@@ -1,18 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class Movement : MonoBehaviour
+public class Movement : MonoBehaviour, ICharacterBehaviour<Vector3>
 {
-    public float speed = 100.0f;
+    public float speed = 1.0f;
     public Camera camera;
     public CharacterController characterController;
     private Vector3 _direction;
 
-    public void OnMove(InputAction.CallbackContext context)
+    public void OnBehaviour(Vector3 value)
     {
-        _direction = context.ReadValue<Vector2>();
+        _direction = value;
     }
 
     private void Awake()
@@ -34,7 +33,8 @@ public class Movement : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 forward = Vector3.ProjectOnPlane(camera.transform.forward, Vector3.up);
-        characterController.transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
+        Vector3 position = characterController.transform.position;
+        position.y = 0.0f;
+        characterController.transform.position = position;
     }
 }
